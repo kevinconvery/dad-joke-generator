@@ -1,37 +1,44 @@
 import React, { useState, useEffect } from 'react'
 import Joke from '../Joke/Joke'
+import { 
+  Wrapper, NewJokeButton, BottomTextContainer, BottomLinkContainer, BottomLink 
+} from '../styled'
 import { jokeList } from '../../helpers'
 import { FaLinkedin, FaGithub } from 'react-icons/fa'
 
 const Container = props => {
-  const getJoke = () => jokeList[Math.floor(Math.random() * jokeList.length)]
-  const [currentJoke, setCurrentJoke] = useState({})
-
-  useEffect(() => {
-    setCurrentJoke(getJoke())
-  }, [setCurrentJoke])
+  const [currentJoke, setCurrentJoke] = useState("")
+  
+  const getJoke = () => {
+    const jokes = jokeList.filter(joke => joke !== currentJoke)
+    return jokes[Math.floor(Math.random() * jokes.length)]
+  }
+  
+  // eslint-disable-next-line
+  useEffect(() => { 
+    currentJoke || setCurrentJoke(getJoke())
+  })
 
   return (
-    <div className="Container">
-      <button 
-        className="new-joke-button"
+    <Wrapper>
+      <NewJokeButton
         onClick={() => setCurrentJoke(getJoke())}  
       >
         Get New Joke
-      </button>
+      </NewJokeButton>
       <Joke joke={currentJoke} />
-      <div className="bottom-text">
-        Kevin Convery 
-        <span className="links">
-          <a href="https://www.linkedin.com/in/kevin-convery/">
+      <BottomTextContainer>
+        Kevin Convery
+        <BottomLinkContainer>
+          <BottomLink href="https://www.linkedin.com/in/kevin-convery/">
             <FaLinkedin />
-          </a>
-          <a href="https://github.com/kevinconvery">
+          </BottomLink>
+          <BottomLink href="https://github.com/kevinconvery">
             <FaGithub />
-          </a>    
-        </span>
-      </div>
-    </div>
+          </BottomLink>    
+        </BottomLinkContainer>
+      </BottomTextContainer>
+    </Wrapper>
   )
 }
 

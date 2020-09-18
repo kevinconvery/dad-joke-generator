@@ -15,9 +15,9 @@ test('there should be a joke in the container when it is loaded', () => {
 })
 
 test('when the new joke button is clicked, a different joke is displayed', () => {
-  const { container } = render(<Container />)
+  const { container, getByRole } = render(<Container />)
   const firstJokeText = container.querySelectorAll(".joke-text")[0].textContent
-  const button = container.querySelector('.new-joke-button')
+  const button = getByRole(/button/i)
   fireEvent.click(button)
   const secondJokeText = container.querySelectorAll('.joke-text')[0].textContent
   expect(firstJokeText).not.toEqual(secondJokeText)

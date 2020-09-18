@@ -1,13 +1,14 @@
 import React from 'react'
+import { JokeTextContainer } from '../styled'
 
 const Joke = props => {
   const { joke } = props
   const { intro, punchline } = joke
   return (
-    <div className="Joke">
+    <JokeTextContainer>
       <span className="joke-text">{intro}</span>
       <span className="joke-text">{punchline}</span>
-    </div>
+    </JokeTextContainer>
   )
 }
 
