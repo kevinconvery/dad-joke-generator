@@ -11,15 +11,24 @@ export const Wrapper = styled.div`
   align-items: center;
 `
 
-export const NewJokeButton = styled.button`
+export const TopLinkContainer = styled.div`
+  width: 15rem;
+  height: 5rem;
+  position: absolute;
+  top: 2rem;
+  right: 2rem;
+  display: flex;
+  align-items: center;
+`
+
+export const JokeButton = styled.button`
+  margin: 0 1rem;
   padding: 2rem 1rem;
   background: var(--dark-pink);
   border: none;
   border-radius: 100%;
   transition: all 1s ease-in-out;
-  position: absolute;
-  top: 2rem;
-  right: 2rem;
+  display: flex;
   font-family: var(--font-stack);
   color: white;
   outline: none;

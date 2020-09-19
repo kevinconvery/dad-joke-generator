@@ -1,9 +1,8 @@
 import React, { useState, useEffect } from 'react'
 import Joke from '../Joke/Joke'
 import { 
-  Wrapper, NewJokeButton, BottomTextContainer, BottomLinkContainer, BottomLink 
+  Wrapper, JokeButton, TopLinkContainer, BottomTextContainer, BottomLinkContainer, BottomLink 
 } from '../styled'
-import { jokeList } from '../../helpers'
 import { FaLinkedin, FaGithub } from 'react-icons/fa'
 
 const Container = props => {
@@ -21,26 +20,25 @@ const Container = props => {
     const data = await response.json()
     setJokeCollection(data)
     setCurrentJoke(data[0])
-    // const results = response.json()
-    // console.log(`results are ${JSON.stringify(results, 4, null)}`)
-    // setJokeCollection(results)
   }
   
   // eslint-disable-next-line
   useEffect(() => {
-    if (!jokeCollection) {
-      getJokeCollection()
-    }
-    // console.log(currentJoke)
+    jokeCollection || getJokeCollection()
   })
 
   return (
     <Wrapper>
-      <NewJokeButton
-        onClick={() => setCurrentJoke(getNewJoke())}  
-      >
-        Get New Joke
-      </NewJokeButton>
+      <TopLinkContainer>
+        <JokeButton
+          onClick={() => setCurrentJoke(getNewJoke())}  
+        >
+          Get New Joke
+        </JokeButton>
+        <JokeButton>
+          Add New Joke
+        </JokeButton>
+      </TopLinkContainer>
       <Joke joke={currentJoke} />
       <BottomTextContainer>
         Kevin Convery
