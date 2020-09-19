@@ -4,11 +4,12 @@ export const Wrapper = styled.div`
   height: 100vh;
   width: 100vw;
   font-family: var(--font-stack);
-  background: var(--pink);
+  background: ${props => props.backgroundColor || "var(--pink)"};
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  ${props => props.modal && "z-index: 2"}
 `
 
 export const TopLinkContainer = styled.div`
@@ -19,6 +20,7 @@ export const TopLinkContainer = styled.div`
   right: 2rem;
   display: flex;
   align-items: center;
+  justify-content: space-evenly;
 `
 
 export const JokeButton = styled.button`
