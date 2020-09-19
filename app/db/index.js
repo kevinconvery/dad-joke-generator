@@ -3,7 +3,6 @@ const mongoose = require('mongoose')
 const app = express()
 const port = 7000
 const { Schema } = mongoose
-const dbConnectionString = `mongodb://localhost/dad-jokes-forever`
 const dbConnectionObject = {
   endpoint: `mongodb://localhost/dad-jokes-forever`,
   params: {
@@ -20,10 +19,21 @@ const db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error'))
 db.once('open', () => console.log('Connected to MongoDB database!'))
 
-const Joke = mongoose.model('Joke', { opening: String, punchline: String })
+const jokeSchema = new Schema({
+  opening: String,
+  punchline: String,
+  created_on: {type: Date, default: Date.now }
+})
+const Joke = mongoose.model('Joke', jokeSchema)
 
 app.get('/', (req, res) => {
   res.send(`We're connected!`)
+})
+
+app.get('/data', async (req, res) => {
+  console.log('route hit')
+  const results = await Joke.find()
+  res.send(results)
 })
 
 app.listen(port, () => {

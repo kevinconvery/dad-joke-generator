@@ -8,21 +8,36 @@ import { FaLinkedin, FaGithub } from 'react-icons/fa'
 
 const Container = props => {
   const [currentJoke, setCurrentJoke] = useState("")
+  const [jokeCollection, setJokeCollection] = useState()
   
-  const getJoke = () => {
-    const jokes = jokeList.filter(joke => joke !== currentJoke)
+  const getNewJoke = () => {
+    const jokes = jokeCollection.filter(joke => joke !== currentJoke)
     return jokes[Math.floor(Math.random() * jokes.length)]
   }
   
+  const getJokeCollection = async () => {
+    const endpoint = `/data`
+    const response = await fetch(endpoint)
+    const data = await response.json()
+    setJokeCollection(data)
+    setCurrentJoke(data[0])
+    // const results = response.json()
+    // console.log(`results are ${JSON.stringify(results, 4, null)}`)
+    // setJokeCollection(results)
+  }
+  
   // eslint-disable-next-line
-  useEffect(() => { 
-    currentJoke || setCurrentJoke(getJoke())
+  useEffect(() => {
+    if (!jokeCollection) {
+      getJokeCollection()
+    }
+    // console.log(currentJoke)
   })
 
   return (
     <Wrapper>
       <NewJokeButton
-        onClick={() => setCurrentJoke(getJoke())}  
+        onClick={() => setCurrentJoke(getNewJoke())}  
       >
         Get New Joke
       </NewJokeButton>
