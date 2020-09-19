@@ -1,13 +1,14 @@
 import React, { useState, useEffect } from 'react'
 import Joke from '../Joke/Joke'
-import { 
-  Wrapper, JokeButton, TopLinkContainer, BottomTextContainer, BottomLinkContainer, BottomLink 
-} from '../styled'
-import { FaLinkedin, FaGithub } from 'react-icons/fa'
+import AddJoke from '../Modal/AddJoke'
+import Footer from '../Footer/Footer'
+import { Wrapper, JokeButton, TopLinkContainer } from '../styled'
 
 const Container = props => {
   const [currentJoke, setCurrentJoke] = useState("")
   const [jokeCollection, setJokeCollection] = useState()
+  const [modalVisibility, setModalVisibility] = useState(false)
+  const [modalType, setModalType] = useState({ type: "none", state: "hidden" })
   
   const getNewJoke = () => {
     const jokes = jokeCollection.filter(joke => joke !== currentJoke)
@@ -21,13 +22,15 @@ const Container = props => {
     setJokeCollection(data)
     setCurrentJoke(data[0])
   }
+
+  const toggleModalVisibility = () => setModalVisibility(!modalVisibility)
   
   // eslint-disable-next-line
   useEffect(() => {
     jokeCollection || getJokeCollection()
   })
 
-  return (
+  return modalVisibility ? <AddJoke toggleModal={toggleModalVisibility} /> : (
     <Wrapper>
       <TopLinkContainer>
         <JokeButton
@@ -35,22 +38,14 @@ const Container = props => {
         >
           Get New Joke
         </JokeButton>
-        <JokeButton>
+        <JokeButton
+          onClick={toggleModalVisibility}
+        >
           Add New Joke
         </JokeButton>
       </TopLinkContainer>
       <Joke joke={currentJoke} />
-      <BottomTextContainer>
-        Kevin Convery
-        <BottomLinkContainer>
-          <BottomLink href="https://www.linkedin.com/in/kevin-convery/">
-            <FaLinkedin />
-          </BottomLink>
-          <BottomLink href="https://github.com/kevinconvery">
-            <FaGithub />
-          </BottomLink>    
-        </BottomLinkContainer>
-      </BottomTextContainer>
+      <Footer />
     </Wrapper>
   )
 }
