@@ -20,3 +20,24 @@ export const jokeList = [
     punchline: `They'll be missing all their fans.`
   }
 ]
+
+export const getNewJoke = (all, current) => {
+  const jokes = all.filter(joke => joke !== current)
+  const newJoke = jokes[Math.floor(Math.random() * jokes.length)]
+  return newJoke
+}
+
+export const addJoke = jokeData => {
+  const endpoint = '/data'
+  fetch(endpoint, {
+    method: 'POST',
+    mode: 'cors',
+    cache: 'no-cache',
+    headers: {
+      'Content-Type': 'application/json' 
+    },
+    body: JSON.stringify(jokeData)
+  })
+  .then(response => response.json())
+  .then(data => console.log(data))
+}
