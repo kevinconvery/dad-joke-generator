@@ -14,6 +14,21 @@ const Container = props => {
     const jokes = jokeCollection.filter(joke => joke !== currentJoke)
     return jokes[Math.floor(Math.random() * jokes.length)]
   }
+
+  const addJoke = jokeData => {
+    const endpoint = '/data'
+    fetch(endpoint, {
+      method: 'POST',
+      mode: 'cors',
+      cache: 'no-cache',
+      headers: {
+        'Content-Type': 'application/json' 
+      },
+      body: JSON.stringify(jokeData)
+    })
+    .then(response => response.json())
+    .then(data => console.log(data))
+  }
   
   const getJokeCollection = async () => {
     const endpoint = `/data`
@@ -30,7 +45,12 @@ const Container = props => {
     jokeCollection || getJokeCollection()
   })
 
-  return modalVisibility ? <AddJoke toggleModal={toggleModalVisibility} /> : (
+  return modalVisibility ? (
+    <AddJoke 
+      toggleModal={toggleModalVisibility}
+      addJoke={addJoke} 
+    />
+  ) : (
     <Wrapper>
       <TopLinkContainer>
         <JokeButton
