@@ -69,3 +69,43 @@ export const BottomLink = styled.a`
     color: black;
   }
 `
+
+export const NewJokeForm = styled.form`
+  width: 30vw;
+  background: blue;
+  border: 3px solid white;
+  padding: 1rem .75rem;
+  display: flex;
+  flex-direction: column;
+`
+
+export const JokeFormInput = styled.div`
+  margin-top: 0.5rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: calc(30vw -1rem);
+`
+
+export const JokeFormText = styled.input`
+  padding: 0.5em;
+  margin: 0.5em;
+  color: green;
+  outline: none;
+`
+
+export const JokeFormLabel = styled.label`
+  color: white;
+`
+
+export const JokeFormSubmitButton = styled.button`
+  border: none;
+  outline: none;
+  background: var(--pink);
+  color: white;
+  padding: 1rem 2rem;
+  border-radius: 3px;
+  margin-top: 1rem;
+  width: 11rem;
+  align-self: center;
+`
