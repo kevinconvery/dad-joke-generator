@@ -1,6 +1,7 @@
 const express = require('express')
 const mongoose = require('mongoose')
 const app = express()
+app.use(express.json())
 const port = 7000
 const { Schema } = mongoose
 const dbConnectionObject = {
@@ -34,6 +35,16 @@ app.get('/data', async (req, res) => {
   console.log('route hit')
   const results = await Joke.find()
   res.send(results)
+})
+
+app.post('/data', async (req, res) => {
+  const { opening, punchline } = req.body
+  const newJoke = new Joke({ opening: opening, punchline: punchline })
+  try {
+    newJoke.save()
+  } catch(err) {
+    console.log(err)
+  }
 })
 
 app.listen(port, () => {
