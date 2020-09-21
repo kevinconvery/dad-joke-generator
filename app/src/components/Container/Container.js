@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react'
 import Joke from '../Joke/Joke'
 import AddJoke from '../Modal/AddJoke'
+import Header from '../Header/Header'
 import Footer from '../Footer/Footer'
-import { Wrapper, JokeButton, TopLinkContainer, LoadingComponent } from '../styled'
+import { Wrapper, TopLinkButton, TopLinkContainer, LoadingComponent } from '../styled'
 import { getNewJoke, addJoke } from '../../helpers'
 
 const Container = props => {
@@ -16,6 +17,7 @@ const Container = props => {
     setIsLoading(true)
     const response = await fetch(endpoint)
     const data = await response.json()
+    // to show the loader, timeout needs to be here:
     setTimeout(() => {
       setIsLoading(false)
     }, 1000)
@@ -25,6 +27,8 @@ const Container = props => {
 
   const toggleModalVisibility = () => setModalVisibility(!modalVisibility)
   
+  const changeJoke = () => setCurrentJoke(getNewJoke(jokeCollection, currentJoke))
+
   // eslint-disable-next-line
   useEffect(() => {
     jokeCollection || getJokeCollection()
@@ -37,18 +41,11 @@ const Container = props => {
     />
   ) : (
     <Wrapper>
-      <TopLinkContainer>
-        <JokeButton
-          onClick={() => setCurrentJoke(getNewJoke(jokeCollection, currentJoke))}  
-        >
-          Get New Joke
-        </JokeButton>
-        <JokeButton
-          onClick={toggleModalVisibility}
-        >
-          Add New Joke
-        </JokeButton>
-      </TopLinkContainer>
+      <Header 
+        pageType="MAIN"
+        addNewJoke={toggleModalVisibility}
+        getNewJoke={changeJoke}
+      />
       {isLoading ? <LoadingComponent /> : <Joke joke={currentJoke} />}
       <Footer />
     </Wrapper>
