@@ -43,6 +43,7 @@ const AddJoke = props => {
           <JokeFormText 
             onChange={e => setOpeningText(e.target.value)}
             value={openingText} 
+            required
           />
         </JokeFormInput>
         <JokeFormInput>
@@ -50,6 +51,7 @@ const AddJoke = props => {
           <JokeFormText 
             onChange={e => setPunchlineText(e.target.value)}
             value={punchlineText} 
+            required
           />
         </JokeFormInput>
         <JokeFormSubmitButton>Submit</JokeFormSubmitButton>
