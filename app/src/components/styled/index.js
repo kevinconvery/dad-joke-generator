@@ -1,4 +1,4 @@
-import styled from 'styled-components'
+import styled, { css, keyframes } from 'styled-components'
 
 export const Wrapper = styled.div`
   height: 100vh;
@@ -9,7 +9,9 @@ export const Wrapper = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  ${props => props.modal && "z-index: 2"}
+  ${props => props.modal && css`
+    z-index: 2
+  `}
 `
 
 export const TopLinkContainer = styled.div`
@@ -108,4 +110,23 @@ export const JokeFormSubmitButton = styled.button`
   margin-top: 1rem;
   width: 11rem;
   align-self: center;
+`
+
+const loaderRotation = keyframes`
+  from {
+    transform: rotate(0deg);
+  } 
+  to {
+    transform: rotate(360deg);
+  }
+`
+
+export const LoadingComponent = styled.div`
+  background: transparent;
+  height: 300px;
+  width: 300px;
+  border: 3px solid white;
+  border-radius: 50%;
+  border-width: 2px 1px 0px 0px;
+  animation: ${loaderRotation} 2s linear infinite;
 `
