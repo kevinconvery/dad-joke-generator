@@ -1,8 +1,6 @@
 import React from 'react'
 
-import { 
-  BottomTextContainer, BottomLinkContainer, BottomLink 
-} from '../styled'
+import { BottomTextContainer, BottomLinkContainer, BottomLink } from '../styled'
 import { FaLinkedin, FaGithub } from 'react-icons/fa'
 
 const Footer = () => {
