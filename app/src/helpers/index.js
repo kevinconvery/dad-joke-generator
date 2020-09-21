@@ -27,9 +27,9 @@ export const getNewJoke = (all, current) => {
   return newJoke
 }
 
-export const addJoke = jokeData => {
+export const addJoke = async jokeData => {
   const endpoint = '/data'
-  fetch(endpoint, {
+  const response = await fetch(endpoint, {
     method: 'POST',
     mode: 'cors',
     cache: 'no-cache',
@@ -38,6 +38,5 @@ export const addJoke = jokeData => {
     },
     body: JSON.stringify(jokeData)
   })
-  .then(response => response.json())
-  .then(data => console.log(data))
+  await response.json()
 }
