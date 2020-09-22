@@ -1,8 +1,7 @@
 import React, { useState } from 'react'
+import Header from '../Header/Header'
 import { 
   Wrapper, 
-  JokeButton, 
-  TopLinkContainer, 
   NewJokeForm, 
   JokeFormText, 
   JokeFormInput, 
@@ -15,7 +14,7 @@ const AddJoke = props => {
   const [openingText, setOpeningText] = useState("")
   const [punchlineText, setPunchlineText] = useState("")
 
-  const { toggleModal, addJoke } = props
+  const { toggleModal, addJoke, returnToMain } = props
 
   const handleSubmit = e => {
     e.preventDefault()
@@ -32,11 +31,10 @@ const AddJoke = props => {
       backgroundColor="var(--purple)"
       modal
     >
-      <TopLinkContainer>
-        <JokeButton onClick={toggleModal}>
-          Return to Menu
-        </JokeButton>
-      </TopLinkContainer>
+      <Header 
+        pageType="ADD_JOKE"
+        returnToMain={returnToMain}
+      />
       <NewJokeForm onSubmit={handleSubmit}>
         <JokeFormInput>
           <JokeFormLabel>Opening</JokeFormLabel>
