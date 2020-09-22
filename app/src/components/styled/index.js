@@ -25,7 +25,7 @@ export const TopLinkContainer = styled.div`
   justify-content: space-evenly;
 `
 
-export const JokeButton = styled.button`
+export const TopLinkButton = styled.button`
   margin: 0 1rem;
   padding: 2rem 1rem;
   background: var(--dark-pink);
@@ -47,6 +47,11 @@ export const JokeButton = styled.button`
 export const JokeTextContainer = styled.div`
   display: flex;
   flex-direction: column;
+`
+
+export const JokeText = styled.span`
+  font-size: 2rem;
+  color: white;
 `
 
 export const BottomTextContainer = styled.div`
