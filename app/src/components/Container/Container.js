@@ -3,8 +3,9 @@ import Joke from '../Joke/Joke'
 import AddJoke from '../Modal/AddJoke'
 import Header from '../Header/Header'
 import Footer from '../Footer/Footer'
-import { Wrapper, TopLinkButton, TopLinkContainer, LoadingComponent } from '../styled'
+import { Wrapper, LoadingComponent } from '../styled'
 import { getNewJoke, addJoke } from '../../helpers'
+import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom"
 
 const Container = props => {
   const [currentJoke, setCurrentJoke] = useState("")
@@ -26,7 +27,7 @@ const Container = props => {
   }
 
   const toggleModalVisibility = () => setModalVisibility(!modalVisibility)
-  
+
   const changeJoke = () => setCurrentJoke(getNewJoke(jokeCollection, currentJoke))
 
   // eslint-disable-next-line
@@ -35,8 +36,8 @@ const Container = props => {
   })
 
   return modalVisibility ? (
-    <AddJoke 
-      toggleModal={toggleModalVisibility}
+    <AddJoke
+      returnToMain={toggleModalVisibility}
       addJoke={addJoke} 
     />
   ) : (

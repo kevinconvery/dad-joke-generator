@@ -14,7 +14,7 @@ const AddJoke = props => {
   const [openingText, setOpeningText] = useState("")
   const [punchlineText, setPunchlineText] = useState("")
 
-  const { toggleModal, addJoke, returnToMain } = props
+  const { addJoke, returnToMain } = props
 
   const handleSubmit = e => {
     e.preventDefault()
