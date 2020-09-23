@@ -6,10 +6,9 @@ import {
   JokeFormInput, 
   JokeFormLabel,
   JokeFormSubmitButton,
-  TopLinkContainer
 } from '../styled'
+import Header from '../Header/Header'
 import Footer from '../Footer/Footer'
-import { Link } from "react-router-dom"
 
 const AddJoke = props => {
   const [openingText, setOpeningText] = useState("")
@@ -32,14 +31,7 @@ const AddJoke = props => {
       backgroundColor="var(--purple)"
       modal
     >
-      <TopLinkContainer>
-        <Link 
-          to="/"
-          className="top-inverted-link"
-        >
-          Return to Main
-        </Link>
-      </TopLinkContainer>
+      <Header pageType="ADD_JOKE" />
       <NewJokeForm onSubmit={handleSubmit}>
         <JokeFormInput>
           <JokeFormLabel>Opening</JokeFormLabel>
