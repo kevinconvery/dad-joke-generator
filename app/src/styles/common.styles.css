@@ -3,6 +3,53 @@
   --dark-pink: rgb(204, 82, 102);
   --darker-pink: rgb(204, 82, 102);
   --purple: rgb(120, 65, 196);
+  --darker-purple: rgb(63, 12, 135);
   --metallic: rgb(129, 111, 104);
   --font-stack: 'Oswald', sans-serif;
+}
+
+/* write styles for react-router Link components */
+
+.top-link {
+  margin: 0 1rem;
+  padding: 2rem 1rem;
+  background: var(--dark-pink);
+  border: none;
+  border-radius: 50%;
+  transition: all 1s ease-in-out;
+  display: flex;
+  font-family: var(--font-stack);
+  color: white;
+  outline: none;
+  text-decoration: none;
+  font-size: 0.8em;
+  text-align: center;
+}
+
+.top-link:hover {
+  background: var(--purple);
+  opacity: 0.8;
+  box-shadow: 2px 4px 2px var(--darker-pink);
+}
+
+.top-inverted-link {
+  margin: 0 1rem;
+  padding: 2rem 1rem;
+  background: var(--darker-purple);
+  border: none;
+  border-radius: 50%;
+  transition: all 1s ease-in-out;
+  display: flex;
+  font-family: var(--font-stack);
+  color: white;
+  outline: none;
+  text-decoration: none;
+  font-size: 0.8em;
+  text-align: center;  
+}
+
+.top-inverted-link:hover {
+  background: var(--dark-pink);
+  opacity: 0.8;
+  box-shadow: 2px 4px 2px var(--darker-purple);
 }
