@@ -1,8 +1,9 @@
 import React from 'react'
 import { TopLinkContainer, TopLinkButton } from '../styled'
+import { Link } from 'react-router-dom'
 
 const Header = props => {
-  const { pageType, getNewJoke, addNewJoke, returnToMain } = props
+  const { pageType, getNewJoke } = props
   switch(pageType) {
     case "MAIN":
       return (
@@ -12,19 +13,22 @@ const Header = props => {
           >
             Get New Joke
           </TopLinkButton>
-          <TopLinkButton
-            onClick={addNewJoke}
+          <Link 
+            to="/addjoke"
+            className="top-link"
           >
             Add New Joke
-          </TopLinkButton>
+          </Link>
         </TopLinkContainer>
       )
     case "ADD_JOKE":
+    case "LOGIN":
+    case "REGISTER":
       return (
         <TopLinkContainer>
-          <TopLinkButton onClick={returnToMain}>
+          <Link to="/" className="top-inverted-link">
             Return to Menu
-          </TopLinkButton>
+          </Link>
         </TopLinkContainer>
       )
     default:
