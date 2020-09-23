@@ -1,20 +1,21 @@
 import React, { useState } from 'react'
-import Header from '../Header/Header'
 import { 
   Wrapper, 
   NewJokeForm, 
   JokeFormText, 
   JokeFormInput, 
   JokeFormLabel,
-  JokeFormSubmitButton
+  JokeFormSubmitButton,
+  TopLinkContainer
 } from '../styled'
 import Footer from '../Footer/Footer'
+import { Link } from "react-router-dom"
 
 const AddJoke = props => {
   const [openingText, setOpeningText] = useState("")
   const [punchlineText, setPunchlineText] = useState("")
 
-  const { addJoke, returnToMain } = props
+  const { addJoke } = props
 
   const handleSubmit = e => {
     e.preventDefault()
@@ -31,10 +32,14 @@ const AddJoke = props => {
       backgroundColor="var(--purple)"
       modal
     >
-      <Header 
-        pageType="ADD_JOKE"
-        returnToMain={returnToMain}
-      />
+      <TopLinkContainer>
+        <Link 
+          to="/"
+          className="top-inverted-link"
+        >
+          Return to Main
+        </Link>
+      </TopLinkContainer>
       <NewJokeForm onSubmit={handleSubmit}>
         <JokeFormInput>
           <JokeFormLabel>Opening</JokeFormLabel>
@@ -58,5 +63,6 @@ const AddJoke = props => {
     </Wrapper>
   )
 }
+
 
 export default AddJoke
