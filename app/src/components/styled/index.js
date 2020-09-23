@@ -28,7 +28,7 @@ export const TopLinkContainer = styled.div`
 export const TopLinkButton = styled.button`
   margin: 0 1rem;
   padding: 2rem 1rem;
-  background: var(--dark-pink);
+  background: ${props => props.backgroundColor ? props.backgroundColor : "var(--dark-pink)"};
   border: none;
   border-radius: 100%;
   transition: all 1s ease-in-out;
@@ -38,9 +38,9 @@ export const TopLinkButton = styled.button`
   outline: none;
 
   :hover {
-    background: var(--purple);
+    background: ${props => props.hoverColor ? props.hoverColor : "var(--purple)"};
     opacity: 0.8;
-    box-shadow: 2px 4px 2px var(--darker-pink);
+    box-shadow: 2px 4px 2px ${props => props.shadowColor ? props.shadowColor : "var(--darker-pink)"};
   }
 `
 
