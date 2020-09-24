@@ -1,10 +1,12 @@
+require('dotenv').config()
 const express = require('express')
 const mongoose = require('mongoose')
 const app = express()
-const port = 7000
+const port = process.env.PORT || 7000
 const { dataRoute } = require('./routes')
+const { DB_ENDPOINT } = process.env
 const dbConnectionObject = {
-  endpoint: `mongodb://localhost/dad-jokes-forever`,
+  endpoint: DB_ENDPOINT,
   params: {
     useNewUrlParser: true,
     useUnifiedTopology: true,
